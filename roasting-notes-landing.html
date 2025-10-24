@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roasting Notes - 진짜 커피향으로 만드는 변화</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            color: #3d2817;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(139, 90, 60, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(139, 90, 60, 0.03);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #5c3d2e;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #6b4e3d;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #5c3d2e;
+            color: #f5f1e8;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(92, 61, 46, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background: #4a3124;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(92, 61, 46, 0.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid #6b4e3d;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #6b4e3d;
+            border-radius: 50%;
+            animation: scrollDot 2s infinite;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #5c3d2e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #8b5a3c;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Product Section */
+        .product-section {
+            background: #ffffff;
+        }
+
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .product-image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(92, 61, 46, 0.15);
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #8b5a3c;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .product-description {
+            padding: 20px;
+        }
+
+        .product-description h3 {
+            font-size: 2.2rem;
+            color: #5c3d2e;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .product-description p {
+            font-size: 1.15rem;
+            color: #6b4e3d;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .product-highlight {
+            background: #f9f6f0;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #8b5a3c;
+            margin-top: 30px;
+        }
+
+        .product-highlight p {
+            margin: 0;
+            font-weight: 500;
+            color: #5c3d2e;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .product-card {
+            background: #f9f6f0;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(92, 61, 46, 0.1);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            color: #5c3d2e;
+            margin-bottom: 15px;
+        }
+
+        .product-card p {
+            color: #6b4e3d;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(92, 61, 46, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(92, 61, 46, 0.15);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: #f9f6f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            color: #5c3d2e;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .benefit-item p {
+            color: #6b4e3d;
+            line-height: 1.7;
+        }
+
+        /* Eco Story Section */
+        .eco-section {
+            background: #5c3d2e;
+            color: #f5f1e8;
+        }
+
+        .eco-section .section-title {
+            color: #f5f1e8;
+        }
+
+        .eco-section .section-subtitle {
+            color: #e8dcc8;
+        }
+
+        .eco-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .eco-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #f5f1e8;
+        }
+
+        .eco-text p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: #e8dcc8;
+        }
+
+        .eco-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .stat-box {
+            background: rgba(245, 241, 232, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(245, 241, 232, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f5f1e8;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #e8dcc8;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #f9f6f0 0%, #f5f1e8 100%);
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            color: #5c3d2e;
+            margin-bottom: 25px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: #6b4e3d;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: #f5f1e8;
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 2px solid #e8dcc8;
+        }
+
+        .price-tag .label {
+            color: #8b5a3c;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .price-tag .price {
+            color: #5c3d2e;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .cta-button-large {
+            display: inline-block;
+            background: #5c3d2e;
+            color: #f5f1e8;
+            padding: 25px 70px;
+            font-size: 1.4rem;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(92, 61, 46, 0.3);
+            font-weight: 600;
+        }
+
+        .cta-button-large:hover {
+            background: #4a3124;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(92, 61, 46, 0.4);
+        }
+
+        .limited-notice {
+            margin-top: 30px;
+            color: #8b5a3c;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #3d2817;
+            color: #e8dcc8;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes scrollDot {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .product-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .product-description h3 {
+                font-size: 1.8rem;
+            }
+
+            .eco-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .eco-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="/mnt/user-data/uploads/Roasting-Notes-001.png" alt="Roasting Notes Logo" class="logo">
+            <h1>진짜 커피향으로<br>삶의 중요한 순간을 채우세요</h1>
+            <p>화학적 향으로는 얻을 수 없는 진짜 도움.<br>친환경 업사이클링으로 만드는 특별한 방향제</p>
+            <a href="#cta" class="cta-button">웨이팅 신청하기</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Product Introduction -->
+    <section class="product-section">
+        <div class="container">
+            <h2 class="section-title">커피 찌꺼기로 만든 방향제</h2>
+            <p class="section-subtitle">한 줌 크기의 작은 변화가 당신의 공간을 특별하게 만듭니다</p>
+            
+            <!-- Product Hero with Image -->
+            <div class="product-hero">
+                <div class="product-image-container">
+                    <!-- 여기에 제품 이미지를 넣어주세요 -->
+                    <!-- 예: <img src="제품이미지.jpg" alt="Roasting Notes 커피 방향제"> -->
+                    <div class="product-image-placeholder">
+                        📸<br>
+                        여기에 제품 이미지를 넣어주세요<br>
+                        (커피 방향제가 놓인 책상, 서재 등)
+                    </div>
+                </div>
+                <div class="product-description">
+                    <h3>당신의 공간에<br>진짜 커피향을 더하세요</h3>
+                    <p>로스팅된 원두 찌꺼기를 재활용하여 만든 자연 그대로의 향. 인공 향료는 단 한 방울도 사용하지 않았습니다.</p>
+                    <p>미니멀한 디자인과 우드톤의 고급스러운 느낌이 어떤 공간에도 자연스럽게 어울립니다. 책상 위, 침실, 서재 등 원하는 곳에 놓기만 하면 됩니다.</p>
+                    <div class="product-highlight">
+                        <p>💡 한 줌 크기로 작지만, 공간 전체에 은은하게 퍼지는 자연스러운 커피향을 느낄 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">☕</div>
+                    <h3>진짜 커피 원두 사용</h3>
+                    <p>로스팅된 원두 찌꺼기를 재활용하여 만든 자연 그대로의 향. 인공 향료는 단 한 방울도 사용하지 않습니다.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🎨</div>
+                    <h3>미니멀한 디자인</h3>
+                    <p>우드톤의 고급스러운 느낌과 미니멀한 디자인. 어떤 공간에도 자연스럽게 어울리는 데코 아이템입니다.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🌿</div>
+                    <h3>간편한 사용법</h3>
+                    <p>원하는 곳에 놓기만 하면 됩니다. 책상, 서재, 침실 어디든 당신이 원하는 곳에 커피향을 더하세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">진짜 커피향이 주는 특별한 효과</h2>
+            <p class="section-subtitle">과학적으로 입증된 커피향의 긍정적 효과를 경험하세요</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>집중력 향상</h3>
+                    <p>커피향은 뇌의 각성 상태를 자극하여 업무와 공부의 집중도를 높여줍니다.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💡</div>
+                    <h3>창의력 증진</h3>
+                    <p>익숙한 커피향은 편안함을 주면서도 사고를 활성화시켜 창의적인 아이디어를 촉진합니다.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">😌</div>
+                    <h3>스트레스 완화</h3>
+                    <p>자연스러운 커피의 향은 마음을 안정시키고 긴장을 풀어주는 효과가 있습니다.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏡</div>
+                    <h3>공간의 품격</h3>
+                    <p>화학적 방향제와 달리 자연스럽고 고급스러운 향으로 공간의 분위기를 한층 높여줍니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Story Section -->
+    <section class="eco-section">
+        <div class="container">
+            <h2 class="section-title">버려지는 것에서 시작된 이야기</h2>
+            <p class="section-subtitle">Roasting Notes는 단순한 방향제가 아닙니다. 우리의 철학이자 본질입니다.</p>
+            
+            <div class="eco-content">
+                <div class="eco-text">
+                    <h3>업사이클링의 가치</h3>
+                    <p>매일 카페에서 버려지는 수많은 커피 찌꺼기들. 우리는 이것이 단순한 쓰레기가 아니라 새로운 가치를 만들 수 있는 소중한 자원이라고 믿습니다.</p>
+                    <p>Roasting Notes는 커피 찌꺼기를 수거하여 정성스럽게 건조하고, 아름다운 형태로 재탄생시킵니다. 이 과정에서 어떤 화학물질도 첨가하지 않으며, 오직 커피 원두가 가진 본연의 향과 특성만을 살립니다.</p>
+                    <p>하나의 제품을 선택하는 것만으로도 환경을 생각하는 마음을 실천할 수 있습니다. 작은 선택이 큰 변화를 만듭니다.</p>
+                </div>
+                <div class="eco-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">재활용 커피 찌꺼기</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">0%</div>
+                        <div class="stat-label">화학 첨가물</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">♻️</div>
+                        <div class="stat-label">친환경 업사이클링</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">🌱</div>
+                        <div class="stat-label">지속가능한 미래</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <h2>첫 번째 제품을 만나보세요</h2>
+            <p>Roasting Notes와 함께 친환경에 동참하고<br>삶의 중요한 부분에 진짜 도움을 받으세요</p>
+            
+            <div class="price-tag">
+                <span class="label">예상 가격</span>
+                <div class="price">3,000원</div>
+            </div>
+            
+            <a href="https://open.kakao.com/YOUR_LINK" class="cta-button-large" target="_blank">웨이팅 신청하기</a>
+            
+            <p class="limited-notice">✨ 출시 전 웨이팅 고객님께는 특별한 혜택을 준비했습니다</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Roasting Notes</strong></p>
+            <p>진짜 커피향으로 만드는 변화</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">© 2025 Roasting Notes. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
